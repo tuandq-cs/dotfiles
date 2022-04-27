@@ -1,10 +1,11 @@
-" General settings
+" General se{ search = vim.fn.input("Grep For > ")}ttings
 set exrc
 set guicursor=
 set number
 set relativenumber
 set laststatus=2
 set incsearch
+set cursorline
 
 " Define the length of the real <Tab> should be. 
 " When change this value, all <Tab>s in document will change too.
@@ -28,11 +29,17 @@ set signcolumn=yes
 " Plugins
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'gruvbox-community/gruvbox'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
+" Tools
+        Plug 'neovim/nvim-lspconfig'
+        Plug 'itchyny/lightline.vim'
+        Plug 'tpope/vim-fugitive'
+        Plug 'tpope/vim-surround'
+        Plug 'nvim-lua/plenary.nvim'
+        Plug 'nvim-telescope/telescope.nvim'
+
+
+" Color-schemes
+        Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
 
@@ -53,3 +60,12 @@ let g:lightline = {
       \ },
       \ }
 
+" Remap configuration
+let mapleader = " "
+nnoremap <leader>ps :lua require('telescope.builtin').grep_string()<CR>
+nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <Leader>pf :lua require('telescope.builtin').find_files()<CR>
+
+if filereadable(expand("./lsp/python-ls.lua"))
+          source ./lsp/python-ls.lua
+endif
