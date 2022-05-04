@@ -10,15 +10,15 @@ end
 vim.cmd [[
 	augroup packer_user_config
 		autocmd!
-		autocmd BufWritePost plugin/init.lua so <afile> | PackerSync
-]] -- THIS KINDA SUCK FOR ME!!! I NEED TO CHANGE LATER
+		autocmd BufWritePost <buffer> source % | PackerSync
+]] -- I THINK THERE ARE SOME WAY BETTER
 
 -- Use a protected call so that I don't error out on first use
 local ok, packer = pcall(require, "packer")
 if not ok then
 	return
 end
--- Test
+
 return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
