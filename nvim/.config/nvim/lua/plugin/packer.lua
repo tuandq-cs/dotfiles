@@ -11,7 +11,7 @@ vim.cmd [[
 	augroup packer_user_config
 		autocmd!
 		autocmd BufWritePost <buffer> source % | PackerSync
-]] -- I THINK THERE ARE SOME WAY BETTER
+]] -- I THINK THERE ARE SOME WAY BETTER ?
 
 -- Use a protected call so that I don't error out on first use
 local ok, packer = pcall(require, "packer")
