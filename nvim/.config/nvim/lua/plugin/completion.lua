@@ -1,14 +1,15 @@
-local prequire = require("helper").prequire
+local prequire =  require("helper").prequire
 
 local cmp = prequire('cmp')
 local luasnip = prequire('luasnip')
+local lspkind = prequire('lspkind')
 local snip_from_vscode = prequire('luasnip.loaders.from_vscode')
-if not (cmp and luasnip and snip_from_vs_code) then
+if not (cmp and luasnip and snip_from_vscode and lspkind) then
 	return
 end
 
 -- Load vscode-like snippets
-snip_from_vs_code.lazy_load()
+snip_from_vscode.lazy_load()
 
 -- 				nvim-cmp configs
 local nvim_cmp_config = {
@@ -16,6 +17,18 @@ local nvim_cmp_config = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
+	},
+	formatting = {
+		format = lspkind.cmp_format({
+			mode = "symbol_text",
+			menu = ({
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				luasnip = "[LuaSnip]",
+				nvim_lua = "[Lua]",
+				latex_symbols = "[Latex]",
+			})
+		}),
 	},
 	mapping = {
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -49,7 +62,6 @@ local nvim_cmp_config = {
 		{ name = "buffer" },
 		{ name = "path" },
 	},
-	
 }
 
 cmp.setup(nvim_cmp_config)

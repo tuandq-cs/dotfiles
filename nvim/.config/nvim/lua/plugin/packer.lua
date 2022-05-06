@@ -1,5 +1,8 @@
+local prequire =  require("helper").prequire
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+
+
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
   print "Installing packer close and reopen Neovim..."
@@ -10,18 +13,19 @@ end
 vim.cmd [[
 	augroup packer_user_config
 		autocmd!
-		autocmd BufWritePost <buffer> source % | PackerSync
+		autocmd BufWritePost packer.lua source <afile> | PackerSync
 ]] -- I THINK THERE ARE SOME WAY BETTER ?
 
--- Use a protected call so that I don't error out on first use
-local ok, packer = pcall(require, "packer")
-if not ok then
+local packer = prequire('packer')
+if not packer then
 	return
 end
 
-return require('packer').startup(function(use)
+return packer.startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
+    -- Colorscheme plugins
+    use 'folke/tokyonight.nvim'
 	-- Nvim tree: File Explorer
 	use {
 	    'kyazdani42/nvim-tree.lua',
@@ -32,7 +36,7 @@ return require('packer').startup(function(use)
 	-- Completion plugins
 	use {
 		-- Completion Engine
-		'hrsh7th/nvim-cmp',		
+		'hrsh7th/nvim-cmp',	
 		-- Completion Sources
 		'hrsh7th/cmp-nvim-lsp',		-- Completions for our LSP (our languages)
 		'hrsh7th/cmp-nvim-lua',		-- Lua completions
@@ -52,6 +56,10 @@ return require('packer').startup(function(use)
 	use 'neovim/nvim-lspconfig'
 	-- GUI plugin for lsp, works in tandem with 'nvim-lspconfig'
 	use 'williamboman/nvim-lsp-installer'
+	-- Icon plugins
+	use {
+		'onsails/lspkind.nvim'
+	}
 	if packer_bootstrap then
 		require('packer').sync()
 	end

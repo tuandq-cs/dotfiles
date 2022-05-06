@@ -15,7 +15,7 @@ local set_keymap = vim.api.nvim_set_keymap
 -- Shorten options
 local ns_opt = { noremap = true, silent = true }
 
--- 			*** [NORMAL MODE] *** 
+-- 			*** [NORMAL MODE] ***
 
 -- Source file
 set_keymap('n', '<c-s>', ':luafile %<cr>', ns_opt)
@@ -23,7 +23,7 @@ set_keymap('n', '<c-s>', ':luafile %<cr>', ns_opt)
 -- No highlight
 set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', ns_opt)
 
--- Explorer 
+-- Explorer
 set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', ns_opt)
 
 -- Window movement
@@ -43,14 +43,14 @@ set_keymap('n', '<C-Left>', ':vertical resize -2<CR>', ns_opt)
 set_keymap('n', '<C-Right>', ':vertical resize +2<CR>', ns_opt)
 
 
--- 			*** [VISUAL MODE] *** 
+-- 			*** [VISUAL MODE] ***
 
 -- Visual indenting
 set_keymap('v', '<', '<gv', ns_opt)
 set_keymap('v', '>', '>gv', ns_opt)
 
 
--- 			*** [VISUAL BLOCK MODE] *** 
+-- 			*** [VISUAL BLOCK MODE] ***
 
 -- Move selected line / block of text in visual mode
 -- Shift + k / K to move up
