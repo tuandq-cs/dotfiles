@@ -24,8 +24,32 @@ end
 return packer.startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
+	-- gitsigns
+	use 'lewis6991/gitsigns.nvim'
+    -- nvim-treesitter
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
+    -- Go.nvim
+    use 'ray-x/go.nvim'
+    -- Bufferline
+    use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+    -- Telescope
+        use {
+          'nvim-telescope/telescope.nvim', tag = '0.1.2',
+        -- or                            , branch = '0.1.x',
+          requires = { {'nvim-lua/plenary.nvim'} }
+        }
+        -- Formater
+        use 'mhartington/formatter.nvim'
     -- Colorscheme plugins
     use 'folke/tokyonight.nvim'
+    use { "ellisonleao/gruvbox.nvim" }
+    use "rebelot/kanagawa.nvim"
 	-- Nvim tree: File Explorer
 	use {
 	    'kyazdani42/nvim-tree.lua',
@@ -67,4 +91,5 @@ return packer.startup(function(use)
 	-- ---------------- --
 	-- Require packages --
 	require'nvim-tree'.setup()
+    require("bufferline").setup{}
 end)

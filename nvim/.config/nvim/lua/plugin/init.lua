@@ -1,2 +1,5 @@
 require('plugin.packer')
 require('plugin.completion')
+require('plugin.treesitter')
+require('plugin.go')
+require('plugin.gitsigns')

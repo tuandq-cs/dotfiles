@@ -27,4 +27,4 @@ vim.o.signcolumn = 'yes'
 -- Colorscheme configuration
 vim.o.background = 'dark'
 
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme kanagawa-wave]]
