@@ -25,12 +25,14 @@ end
 return packer.startup(function(use)
         -- Packer can manage itself
         use 'wbthomason/packer.nvim'
-        -- null-ls.nvim
-        use 'jose-elias-alvarez/null-ls.nvim'
-        -- Mason
+        -- mason
+        -- mason-lspconfig + lspconfig
+        -- mason-null-ls + null-ls
         use {
                 "williamboman/mason.nvim",
                 "williamboman/mason-lspconfig.nvim",
+                "jay-babu/mason-null-ls.nvim",
+                'jose-elias-alvarez/null-ls.nvim',
                 "neovim/nvim-lspconfig",
         }
         -- Gitsigns
@@ -69,11 +71,11 @@ return packer.startup(function(use)
                 -- Completion Engine
                 'hrsh7th/nvim-cmp',
                 -- Completion Sources
-                'hrsh7th/cmp-nvim-lsp', -- Completions for our LSP (our languages)
-                'hrsh7th/cmp-nvim-lua', -- Lua completions
-                'hrsh7th/cmp-buffer', -- Buffer completions
-                'hrsh7th/cmp-path', -- Path completions
-                'hrsh7th/cmp-cmdline', -- Cmdline completions
+                'hrsh7th/cmp-nvim-lsp',     -- Completions for our LSP (our languages)
+                'hrsh7th/cmp-nvim-lua',     -- Lua completions
+                'hrsh7th/cmp-buffer',       -- Buffer completions
+                'hrsh7th/cmp-path',         -- Path completions
+                'hrsh7th/cmp-cmdline',      -- Cmdline completions
                 'saadparwaiz1/cmp_luasnip', -- Luasnip completions
         }
         -- Snippet plugins
