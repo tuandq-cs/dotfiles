@@ -6,10 +6,11 @@ vim.o.cursorline = true
 
 -- Define the length of the real <Tab> should be.
 -- When change this value, all <Tab>s in document will change too.
-vim.o.tabstop = 4
+vim.o.tabstop = 4 -- the width of a tab character
+vim.o.shiftwidth = 4 -- the number of spaces used for each level of indentation
 -- Turn on 'expandtab' to insert spaces (numbers define by 'softtabstop')
 -- instead of the real <Tab>
-vim.o.expandtab = true
+vim.o.expandtab = true --replaces tabs with spaces
 vim.o.softtabstop = 4
 
 vim.o.swapfile = false
